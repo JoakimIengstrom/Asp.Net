@@ -8,5 +8,16 @@ namespace EventiaWebapp.Controllers
         {
             return View();
         }
+
+        public IActionResult MyEvents()
+        {
+            return View();
+        }
+
+        public IActionResult ConfirmBooking()
+        {
+            return View();
+
+        }
     }
 }
