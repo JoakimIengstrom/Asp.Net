@@ -1,27 +1,35 @@
-﻿<section class="eventPage">
-    
-    <h1>Events 2022</h1>
-<h3>Six music festivals to look forward to in 2022</h3>
-This year is shaping up to be one of the best for music festivals. Fans can look forward to events featuring their favorite performers. You just have to ask yourself when and where you are going to meet them live. If you want to take a break from work or travel out of town after staying too long indoors, check out this list of the hottest music festivals you wouldn’t want to miss. Obviously, these are subject to change due to current circumstances, but hopefully all move forward as planned.
-<h1>Coachella</h1>
-<h3>April 15-17 & 22-24, 2022 – Indio, California</h3>
-You can’t have a list of music festivals without mentioning one of the biggest in the United States. Attracting more than 250,000 revelers annually, Coachella is at the top of everyone’s list of must-experience events. Aside from the music, the festival is also known for its celebrity appearances, comeback performances, and fashion sense. In fact, Coachella is considered a trendsetter in streetwear, so don’t leave home without dressing to impress. This year’s Coachella is headlined by Rage Against the Machine with an initial lineup that includes Swedish House Mafia and Travis Scott. While the official list is in the works, you might want to book your tickets early.
-<h1>South by Southwest</h1>
-<h3>March 11-20, 2022 – Austin, Texas</h3>
-The city of Austin has been touted as the South’s progressive center. It’s for this reason that makes Austin an ideal place for innovative acts to rise. While it features a separate event for films and comedy performers, South by Southwest (popularly known as South By or SXSW) Musical Festival provides the perfect venue for up and coming bands to share the stage with established acts. Inviting over hundreds of global talents to perform in several venues across the city, SXSW is known for launching independent musicians to international recognition. If you are looking to update your Spotify playlist with the freshest bands, then head on over to Austin this March and experience what bands like Horsegirl, Family Jools, and Bread Pilot have to offer.
-<h1>Ultra Music Festival</h1>
-<h3>March 25-27, 2022 – Miami, Florida</h3>
-South By isn’t the only musical extravaganza happening this year. If you have a taste for electronic music, then book your tickets to the Ultra Music Festival in Miami. A spectacle of light and sound, this three-day affair features veteran DJs and newcomers who are eager to bring up the noise. You may have heard of acts like David Guetta and Nicky Romero, but you might want to give performers like Julian Jordan from the Netherlands or Montreal’s Black Tiger Sex Machine a spot in your playlist. Along with Miami’s tropical attractions, joining the Ultra Music Festival would be the best way to kick-off the Spring season.
-<h1>Austin City Limits Music Festival</h1>
-<h3>October 7-9 & 14-16, 2022 – Austin, Texas</h3>
-Head back to Austin in the Fall and attend another exciting event in the mold of the Austin City Limits Music Festival. Happening in Zilker Park, this eight-stage festival is happening over two weekends and features mainstream acts. This year’s lineup includes Billie Eilish, Megan Thee Stallion, Doja Cat, and DaBaby. Apart from a star-studded lineup, the festival also promises good food and fun activities perfect for the whole family. If you want to make the most out of the ACL experience, consider getting VIP passes and score the best band autographs from your favorite artists.
-<h1>New Orleans Jazz and Heritage Festival</h1>
-<h3>April 29 – May 8, 2022 – New Orleans, Louisiana</h3>
-Do you need your yearly fill of old school jazz, modern pop, and everything in between? Check out the New Orleans Jazz and Heritage Festival this Spring. Popularly known as Jazz Fest, this annual event celebrates not just the city’s rich cultural heritage but also the contributions of artists new and old. Now in its 50th year, Jazz Fest is set to feature Katy Perry, the Rolling Stones, and Santana. Mark your calendar for April 29th to May 8th and see you at the Fair Grounds Race Course for this year’s biggest music event in the Big Easy!
-<h1>Brainquility Fest</h1>
-<h3>February 3-5, 2022 – Live Oak, Florida</h3>
-Every bit a cultural experience, the Brainquility Fest offers more than just great music from more than 30 artists. It features a wide range of activities that are guaranteed to help you unwind. Happening at the Spirit of the Suwannee Music Park, the event has everything you need to stimulate the creative in you: yoga classes, community art exhibitions, and glass-blowing tutorials. Being one with nature hasn’t been this immersive as artists like Motet and Future Joy offer their own brand of soul to complete the atmosphere.
-<br/>
-There are many more festivals to watch out for, but this list should give you a head start.
+﻿@using EventiaWebapp.Services
+@inject EventsService _eventsService
 
-</section>
+@{
+    var list = _eventsService.GetEvents(); 
+    int acordinaCounter = 1;
+}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            @foreach (var item in list)
+            {
+        
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading-@acordinaCounter">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@acordinaCounter" aria-expanded="false" aria-controls="flush-collapse-@acordinaCounter">
+                            @item.Title - @item.Date.ToShortDateString()
+                        </button>
+                    </h2>
+                    <div id="flush-collapse-@acordinaCounter" class="accordion-collapse collapse" aria-labelledby="flush-heading-@acordinaCounter" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <h3>@item.Organizer.Name</h3>
+                            <h4>@item.Place</h4>
+                            <p>@item.Description</p>
+                            <p><strong>@item.Adress</strong></p>
+                            <p><strong>Spots: @item.Spots_Available</strong></p>
+                            <button class="btn btn-secondary">Join</button>
+                        </div>
+                    </div>
+                </div>
+            acordinaCounter = acordinaCounter + 1;
+
+            }
+        </div>
+        
+        
+    

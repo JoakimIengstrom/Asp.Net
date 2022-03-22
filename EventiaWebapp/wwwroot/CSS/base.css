@@ -1,0 +1,16 @@
+﻿html {
+    width: 80%;
+    margin: auto;
+}
+
+body {
+    margin-top: 30px;
+    border: solid black 3px;
+    text-align: center;
+    padding: 30px;
+}
+
+nav {
+    border: solid black 3px;
+    padding: 10px;
+}

@@ -9,8 +9,8 @@ namespace EventiaWebapp.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Place { get; set; }
-        public string Address { get; set; }
-        public DateTimeOffset Date { get; set; }
+        public string Adress { get; set; }
+        public DateTime Date { get; set; }
         public int Spots_Available { get; set; }
 
         
