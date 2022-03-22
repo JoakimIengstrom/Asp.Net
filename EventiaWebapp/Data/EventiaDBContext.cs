@@ -46,15 +46,6 @@ namespace EventiaWebapp.Services.Data
 
             ctx.AddRange(organizers);
 
-            List<Attendee> attendees = new List<Attendee>
-            {
-                new() {Name = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456"},
-                new() {Name = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
-                new() {Name = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"}
-            };
-
-            ctx.AddRange(attendees);
-
             List<Event> events = new List<Event>
             {
                 new()
@@ -127,6 +118,16 @@ namespace EventiaWebapp.Services.Data
             };
 
             ctx.AddRange(events);
+
+            List<Attendee> attendees = new List<Attendee>
+            {
+                new() {Name = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456", Events = new List<Event>{events[0]}},
+                new() {Name = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
+                new() {Name = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"}
+            };
+
+            ctx.AddRange(attendees);
+
             ctx.SaveChanges();
         }
     }

@@ -6,31 +6,29 @@ namespace EventiaWebapp.Services
 {
     public class EventsService 
     {
-        private EventiaDbContext ctx;
-        public List<Event>? EventList { get; set; }
-        public List<Attendee> AttendeeList { get; set; }
-        public List<Organizer> Organizers { get; set; }
-        
+        private EventiaDbContext _ctx;
 
         public EventsService(EventiaDbContext context)
         {
-            ctx = context;
+            _ctx = context;
         }
 
         public List<Event> GetEvents()
         {
-            using var ctx = this.ctx;
-            EventList = ctx.Events
+            var EventList = _ctx.Events
                 .Include(e => e.Organizer)
                 .ToList();
 
             return EventList;
         }
 
-        public Attendee GetAttendee()
+        public Attendee GetAttendee(int userID)
         {
-            
-            throw new NotImplementedException();
+            var AttendeeObj = _ctx.Attendees
+                .Include(a => a.Events)
+                .FirstOrDefault(a => a.Id == userID);
+
+            return AttendeeObj;
         }
 
         public bool AttendEvent(int Id)
@@ -38,9 +36,14 @@ namespace EventiaWebapp.Services
             throw new NotImplementedException();
         }
 
-        public List<Event> GetMyEvents()
+        public List<Event> GetMyEvents(int userID)
         {
-            throw new NotImplementedException();
+            var AttendeeObj = _ctx.Attendees
+                .Include(a => a.Events)
+                .ThenInclude(e => e.Organizer)
+                .FirstOrDefault(a => a.Id == userID);
+            var MyEvents = AttendeeObj.Events;
+            return MyEvents.ToList();
         }
     }
 }

@@ -6,16 +6,7 @@ namespace EventiaWebapp.Controllers
 {
     public class EventsController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult MyEvents(int id)
-        {
-            return View("MyEvents", id);
-        }
-        public IActionResult JoinEvent(Event evnt, Attendee attendee)
+        public IActionResult JoinEvent(Event evnt, Attendee attendee)//Behöver nog inte attendee
         {
             return View("JoinEvent");
         }

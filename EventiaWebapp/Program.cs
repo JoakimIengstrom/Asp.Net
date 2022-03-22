@@ -27,11 +27,13 @@ var app = builder.Build();
 app.UseStaticFiles();
 
 app.MapControllerRoute(
-    name: "default", 
+    name: "default",
     pattern: "{controller=Home}/{action=Index}");
 
 using (var scope = app.Services.CreateScope())
 {
+    var service = scope.ServiceProvider.GetService<EventsService>();
+    service.GetMyEvents(1);
     var dataBase = scope.ServiceProvider.GetService<DataBase>();
     dataBase.PrepDatabase();
 }  
