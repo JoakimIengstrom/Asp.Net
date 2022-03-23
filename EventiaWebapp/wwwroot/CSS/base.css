@@ -5,12 +5,18 @@
 
 body {
     margin-top: 30px;
-    border: solid black 3px;
+    border-radius: 5px;
     text-align: center;
     padding: 30px;
+    
 }
 
 nav {
-    border: solid black 3px;
+    padding: 10px;
+    background-color: lightgreen;
+}
+
+footer {
+    background-color: lightgreen;
     padding: 10px;
 }

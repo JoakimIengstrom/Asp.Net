@@ -15,35 +15,45 @@ namespace EventiaWebapp.Services
 
         public List<Event> GetEvents()
         {
-            var EventList = _ctx.Events
+            var eventList = _ctx.Events
                 .Include(e => e.Organizer)
                 .ToList();
 
-            return EventList;
+            return eventList;
         }
 
-        public Attendee GetAttendee(int userID)
+        public Attendee GetAttendee(int aID)
         {
             var AttendeeObj = _ctx.Attendees
                 .Include(a => a.Events)
-                .FirstOrDefault(a => a.AttendeeId == userID);
+                .FirstOrDefault(a => a.AttendeeId == aID);
 
             return AttendeeObj;
         }
 
-        public void AttendEvent(Event eid, Attendee aid)
+        public void AttendEvent(int eID, int aID)
         {
-            throw new NotImplementedException();
+            var attendee = _ctx.Attendees
+                .Include(a => a.Events)
+                .FirstOrDefault(a => a.AttendeeId == aID);
+
+            var eventQuery = _ctx.Events
+                .FirstOrDefault(e => e.EventId == eID);
+
+            attendee.Events.Add(eventQuery);
+            _ctx.SaveChanges();
         }
 
-        public List<Event> GetMyEvents(int userID)
+        public List<Event> GetMyEvents(int aID)
         {
-            var AttendeeObj = _ctx.Attendees
+            var attendeeObj = _ctx.Attendees
                 .Include(a => a.Events)
                 .ThenInclude(e => e.Organizer)
-                .FirstOrDefault(a => a.AttendeeId == userID);
-            var MyEvents = AttendeeObj.Events;
-            return MyEvents.ToList();
+                .FirstOrDefault(a => a.AttendeeId == aID);
+
+            var myEvents = attendeeObj.Events;
+
+            return myEvents.ToList();
         }
     }
 }

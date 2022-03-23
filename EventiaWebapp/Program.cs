@@ -30,13 +30,17 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}");
 
+app.MapControllerRoute(
+    name: "event",
+    pattern: "{controller=Event}/{action=JoinEvent}/{id}");
+
 using (var scope = app.Services.CreateScope())
 {
+    var dataBase = scope.ServiceProvider.GetService<DataBase>();
+    dataBase.PrepDatabase();
     var service = scope.ServiceProvider.GetService<EventsService>();
     service.GetMyEvents(1);
     service.GetAttendee(1);
-    var dataBase = scope.ServiceProvider.GetService<DataBase>();
-    dataBase.PrepDatabase();
 }  
 
 app.Run();

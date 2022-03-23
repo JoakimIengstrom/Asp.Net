@@ -1,18 +1,26 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using EventiaWebapp.Models;
+﻿using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventiaWebapp.Controllers
 {
     public class EventsController : Controller
     {
-        public IActionResult JoinEvent(Event evnt, Attendee attendee)//Behöver nog inte attendee
+
+        private readonly EventsService _eventsService;
+        
+        public EventsController(EventsService eventsService)
         {
-            return View("JoinEvent");
+            _eventsService = eventsService;
         }
-        public IActionResult ConfirmEvent(int id)
+        public IActionResult JoinEvent(int eventId)
         {
-            return View("ConfirmEvent", id);
+            var data = _eventsService.GetEvents()
+                .Find(e => e.EventId == eventId);
+            return View(data);
+        }
+        public IActionResult ConfirmBooking(int eventId)
+        {
+            return View(eventId);
         }
     }
 }

@@ -22,7 +22,7 @@
                             <p>@item.Description</p>
                             <p><strong>@item.Adress</strong></p>
                             <p><strong>Spots: @item.Spots_Available</strong></p>
-                            <button class="btn btn-secondary">Join</button>
+                            <a class="btn btn-secondary" asp-controller="Events" asp-action="JoinEvent" asp-route-eventId="@item.EventId">Join</a>
                         </div>
                     </div>
                 </div>
