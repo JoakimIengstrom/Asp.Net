@@ -5,7 +5,7 @@ namespace EventiaWebapp.Models
     public class Event
     {
         [Key]
-        public int Id { get; set; }
+        public int EventId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Place { get; set; }

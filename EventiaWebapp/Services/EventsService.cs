@@ -26,12 +26,12 @@ namespace EventiaWebapp.Services
         {
             var AttendeeObj = _ctx.Attendees
                 .Include(a => a.Events)
-                .FirstOrDefault(a => a.Id == userID);
+                .FirstOrDefault(a => a.AttendeeId == userID);
 
             return AttendeeObj;
         }
 
-        public bool AttendEvent(int Id)
+        public void AttendEvent(Event eid, Attendee aid)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +41,7 @@ namespace EventiaWebapp.Services
             var AttendeeObj = _ctx.Attendees
                 .Include(a => a.Events)
                 .ThenInclude(e => e.Organizer)
-                .FirstOrDefault(a => a.Id == userID);
+                .FirstOrDefault(a => a.AttendeeId == userID);
             var MyEvents = AttendeeObj.Events;
             return MyEvents.ToList();
         }

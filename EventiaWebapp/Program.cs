@@ -34,6 +34,7 @@ using (var scope = app.Services.CreateScope())
 {
     var service = scope.ServiceProvider.GetService<EventsService>();
     service.GetMyEvents(1);
+    service.GetAttendee(1);
     var dataBase = scope.ServiceProvider.GetService<DataBase>();
     dataBase.PrepDatabase();
 }  

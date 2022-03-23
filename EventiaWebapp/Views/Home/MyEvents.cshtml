@@ -4,15 +4,16 @@
 
 @{
     var MyEvents = _eventsService.GetMyEvents(1);
+    var Attendee = _eventsService.GetAttendee(1);
     int acordinaCounter = 1;
 }
 
+<h3>@Attendee.Name´s event!</h3>
 
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var item in MyEvents)
     {
-        
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-heading-@acordinaCounter">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@acordinaCounter" aria-expanded="false" aria-controls="flush-collapse-@acordinaCounter">
