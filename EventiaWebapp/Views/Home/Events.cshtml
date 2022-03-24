@@ -1,14 +1,17 @@
 ﻿@using EventiaWebapp.Services
 @inject EventsService _eventsService
 
+
 @{
-    var list = _eventsService.GetEvents(); 
+    var list = _eventsService.GetEvents();
+    var myEvents = _eventsService.GetMyEvents(1);
     int acordinaCounter = 1;
 }
         <div class="accordion accordion-flush" id="accordionFlushExample">
             @foreach (var item in list)
             {
-        
+                var check = myEvents.Any(e => item.EventId == e.EventId);
+                
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-@acordinaCounter">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@acordinaCounter" aria-expanded="false" aria-controls="flush-collapse-@acordinaCounter">
@@ -22,9 +25,16 @@
                             <p>@item.Description</p>
                             <p><strong>@item.Adress</strong></p>
                             <p><strong>Spots: @item.Spots_Available</strong></p>
-                            <a class="btn btn-secondary" asp-controller="Events" asp-action="JoinEvent" asp-route-eventId="@item.EventId">Join</a>
+                            
+                            @if (check) {
+                                <p>You have this ticket already!</p>
+                                <a class="btn btn-secondary" asp-controller="Home" asp-action="MyEvents">MyEvents</a>
+                            } else {
+                                <a class="btn btn-secondary" asp-controller="Events" asp-action="JoinEvent" asp-route-eventId="@item.EventId">Join</a>
+                            }
+                            
                         </div>
-                    </div>
+                    </div>  
                 </div>
             acordinaCounter = acordinaCounter + 1;
 

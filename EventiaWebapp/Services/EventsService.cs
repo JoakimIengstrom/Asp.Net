@@ -39,10 +39,10 @@ namespace EventiaWebapp.Services
 
             var eventParticipation = _ctx.Events
                 .FirstOrDefault(e => e.EventId == eID);
-            //if event exists så returnera någon info. 
+           
             attendee.Events.Add(eventParticipation);
             _ctx.SaveChanges();
-        }//eventuellt göra om den till en bool, true or false.
+        }
 
         public List<Event> GetMyEvents(int aID)
         {
