@@ -14,13 +14,24 @@ namespace EventiaWebapp.Controllers
         }
         public IActionResult JoinEvent(int eventId)
         {
-            var data = _eventsService.GetEvents()
+            var joinEvent = _eventsService.GetEvents()
                 .Find(e => e.EventId == eventId);
-            return View(data);
+            return View(joinEvent);
         }
         public IActionResult ConfirmBooking(int eventId)
         {
-            return View(eventId);
+            var aId = _eventsService.GetAttendee(1);
+            //Detta kommer ju sedan vara den personen som är inloggad
+
+            if (eventId == null)
+            {
+                //Gör något form av notering att det inte har gått.
+            }
+
+            _eventsService.AttendEvent(aId.AttendeeId, eventId);
+            var confirmedEvent = _eventsService.GetEvents()
+                .Find(e => e.EventId == eventId);
+            return View(confirmedEvent);
         }
     }
 }
