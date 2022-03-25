@@ -14,13 +14,8 @@ namespace EventiaWebapp.Services.Data
 
         public EventiaDbContext()
         {
-        }
 
-        /*
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
         }
-        */
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

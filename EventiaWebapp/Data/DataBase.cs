@@ -20,14 +20,5 @@ namespace EventiaWebapp.Data
             ctx.Seed();
 
         }
-
-        public void CreateAndSeed()
-        {
-
-        }
     }
-
-
-
-
 }

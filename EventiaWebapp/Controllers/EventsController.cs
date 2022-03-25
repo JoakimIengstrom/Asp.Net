@@ -7,11 +7,12 @@ namespace EventiaWebapp.Controllers
     {
 
         private readonly EventsService _eventsService;
-        
+
         public EventsController(EventsService eventsService)
         {
             _eventsService = eventsService;
         }
+
         public IActionResult JoinEvent(int eventId)
         {
             var joinEvent = _eventsService.GetEvents()
@@ -21,12 +22,6 @@ namespace EventiaWebapp.Controllers
         public IActionResult ConfirmBooking(int eventId)
         {
             var aId = _eventsService.GetAttendee(1);
-            //Detta kommer ju sedan vara den personen som är inloggad
-
-            if (eventId == null)
-            {
-                //Gör något form av notering att det inte har gått.
-            }
 
             _eventsService.AttendEvent(aId.AttendeeId, eventId);
             var confirmedEvent = _eventsService.GetEvents()

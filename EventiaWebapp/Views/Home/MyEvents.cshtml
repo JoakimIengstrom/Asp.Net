@@ -1,5 +1,4 @@
-﻿@using EventiaWebapp.Models
-@using EventiaWebapp.Services
+﻿@using EventiaWebapp.Services
 @inject EventsService _eventsService
 
 @{
@@ -8,9 +7,7 @@
     int acordinaCounter = 1;
 }
 
-<p></p>
-<h3>@Attendee.Name´s eventlist!</h3>
-
+<h3 class="myEventUser">@Attendee.Name´s eventlist!</h3>
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var item in MyEvents)
