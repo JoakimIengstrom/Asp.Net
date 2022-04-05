@@ -12,10 +12,10 @@ builder.Services.AddScoped<DataBase>();
 
 var connectionString = 
 "server=(localdb)\\MSSQLLocalDB;" +
-"Database=EventiaDB";
+"Database=EventiaPartTwoDBContext";
 
 builder.Services
-    .AddDbContext<EventiaDbContext>(
+    .AddDbContext<EventiaPartTwoDBContext>(
         options =>
         {
             options.UseSqlServer(connectionString);
@@ -23,8 +23,6 @@ builder.Services
     
 
 var app = builder.Build();
-
-app.UseStaticFiles();
 
 app.MapControllerRoute(
     name: "default",
@@ -38,6 +36,14 @@ using (var scope = app.Services.CreateScope())
 {
     var dataBase = scope.ServiceProvider.GetService<DataBase>();
     dataBase.PrepDatabase();
-}  
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

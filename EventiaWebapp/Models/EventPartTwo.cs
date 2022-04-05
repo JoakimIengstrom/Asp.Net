@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventiaWebapp.Models
 {
-    public class Event
+    public class EventPartTwo
     {
         [Key]
         public int EventId { get; set; }
@@ -13,9 +14,10 @@ namespace EventiaWebapp.Models
         public DateTime Date { get; set; }
         public int Spots_Available { get; set; }
 
-        
+        [ForeignKey("Organizer")]
         public int OrganizerId { get; set; }
-        public virtual Organizer Organizer { get; set; }
-        public virtual ICollection<Attendee> Attendees { get; set; }
+        public virtual User Organizer { get; set; }
+
+        public virtual ICollection<User> Attendees { get; set; }
     }
 }
