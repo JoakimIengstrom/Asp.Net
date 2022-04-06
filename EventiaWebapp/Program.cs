@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EventsService>();
@@ -35,6 +34,8 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "event",
     pattern: "{controller=Event}/{action=JoinEvent}/{id?}");
+
+app.MapRazorPages();
 
 using (var scope = app.Services.CreateScope())
 {

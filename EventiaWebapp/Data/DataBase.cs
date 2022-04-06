@@ -121,7 +121,7 @@ namespace EventiaWebapp.Data
 
             List<EventiaUser> attendees = new List<EventiaUser>
             {
-                new() {UserName = "user1", FirstName = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
+                new() {UserName = "joakim@gmail.com", FirstName = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
                 new() {UserName = "user2", FirstName = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
                 new() {UserName = "user3", FirstName = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"}
             };
