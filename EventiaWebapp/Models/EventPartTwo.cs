@@ -14,15 +14,12 @@ namespace EventiaWebapp.Models
         public string Adress { get; set; }
         public DateTime Date { get; set; }
         public int Spots_Available { get; set; }
-
-        //[ForeignKey("Organizer")]
-        //public int OrganizerId { get; set; }
-
+        public string? OrganizerName { get; set; }
+        
         [InverseProperty("HostedEvents")]
-        [DisplayName ("Organizer")]
-        public /*virtual*/ EventiaUser Organizer { get; set; }
+        public EventiaUser Organizer { get; set; }
 
         [InverseProperty("JoinEvents")]
-        public /*virtual*/ ICollection<EventiaUser>? Attendees { get; set; }
+        public ICollection<EventiaUser>? Attendees { get; set; }
     }
 }

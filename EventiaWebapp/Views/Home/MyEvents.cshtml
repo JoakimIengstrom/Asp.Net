@@ -1,13 +1,16 @@
 ﻿@using EventiaWebapp.Services
+@using Microsoft.AspNetCore.Identity
 @inject EventsService _eventsService
+@inject UserManager<EventiaUser> _userManager
 
-@*@{
-    var MyEvents = _eventsService.GetMyEvents(1);
-    var Attendee = _eventsService.GetAttendee(1);
+@{
+    var UserId = _userManager.GetUserId(User);
+    var MyEvents = _eventsService.GetMyEvents(UserId);
+    var Attendee = _eventsService.GetAttendee(UserId);
     int acordinaCounter = 1;
 }
 
-<h3 class="myEventUser">@Attendee.Name´s eventlist!</h3>
+<h3 class="myEventUser">@Attendee.FirstName´s eventlist!</h3>
 
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var item in MyEvents)
@@ -20,7 +23,7 @@
             </h2>
             <div id="flush-collapse-@acordinaCounter" class="accordion-collapse collapse" aria-labelledby="flush-heading-@acordinaCounter" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                    <h3>@item.Organizer.Name</h3>
+                    <h3>@item.Organizer.UserName</h3>
                     <h4>Location @item.Place</h4>
                     <p><strong>@item.Adress</strong></p>
                     <p>You have a ticket to this one!</p>
@@ -30,5 +33,5 @@
         acordinaCounter = acordinaCounter + 1;
 
     }
-</div>*@
+</div>
 

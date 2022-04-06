@@ -1,6 +1,7 @@
 using EventiaWebapp.Data;
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,8 @@ builder.Services
             options.UseSqlServer(connectionString);
         });
 
-builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.RequireConfirmedAccount = false) //All IdenityUser becomes User. 
+builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.RequireConfirmedAccount = false)  
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EventiaPartTwoDBContext>();
 
 var app = builder.Build();
@@ -37,7 +39,7 @@ app.MapControllerRoute(
 using (var scope = app.Services.CreateScope())
 {
     var dataBase = scope.ServiceProvider.GetService<DataBase>();
-    dataBase.PrepDatabase();
+    await dataBase.PrepDatabase();
 }
 
 app.UseHttpsRedirection();

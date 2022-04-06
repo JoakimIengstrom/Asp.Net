@@ -1,18 +1,19 @@
-﻿using EventiaWebapp.Models;
+﻿using EventiaWebapp.Data;
+using EventiaWebapp.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
     public class EventsService 
     {
-        /*private EventiaDbContext _ctx;
+        private EventiaPartTwoDBContext _ctx;
 
-        public EventsService(EventiaDbContext context)
+        public EventsService(EventiaPartTwoDBContext context)
         {
             _ctx = context;
         }
 
-        public List<Event> GetEvents()
+        public List<EventPartTwo> GetEvents()
         {
             var eventList = _ctx.Events
                 .Include(e => e.Organizer)
@@ -21,38 +22,38 @@ namespace EventiaWebapp.Services
             return eventList;
         }
 
-        public Attendee GetAttendee(int aID)
+        public EventiaUser GetAttendee(string aID)
         {
-            var AttendeeObj = _ctx.Attendees
-                .Include(a => a.Events)
-                .FirstOrDefault(a => a.AttendeeId == aID);
+            var AttendeeObj = _ctx.Users
+                .Include(a => a.JoinEvents)
+                .FirstOrDefault(a => a.Id == aID);
 
             return AttendeeObj;
         }
 
-        public void AttendEvent(int aID, int eID)
+        public void AttendEvent(string aID, int eID)
         {
-            var attendee = _ctx.Attendees
-                .Include(a => a.Events)
-                .FirstOrDefault(a => a.AttendeeId == aID);
+            var attendee = _ctx.Users
+                .Include(a => a.JoinEvents)
+                .FirstOrDefault(a => a.Id == aID);
 
             var eventParticipation = _ctx.Events
                 .FirstOrDefault(e => e.EventId == eID);
            
-            attendee.Events.Add(eventParticipation);
+            attendee.JoinEvents.Add(eventParticipation);
             _ctx.SaveChanges();
         }
 
-        public List<Event> GetMyEvents(int aID)
+        public List<EventPartTwo> GetMyEvents(string aID)
         {
-            var attendeeObj = _ctx.Attendees
-                .Include(a => a.Events)
+            var attendeeObj = _ctx.Users
+                .Include(a => a.JoinEvents)
                 .ThenInclude(e => e.Organizer)
-                .FirstOrDefault(a => a.AttendeeId == aID);
+                .FirstOrDefault(a => a.Id == aID);
 
-            var myEvents = attendeeObj.Events;
+            var myEvents = attendeeObj.JoinEvents;
 
             return myEvents.ToList();
-        }*/
+        }
     }
 }
