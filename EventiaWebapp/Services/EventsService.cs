@@ -6,7 +6,7 @@ namespace EventiaWebapp.Services
 {
     public class EventsService 
     {
-        private EventiaPartTwoDBContext _ctx;
+        private readonly EventiaPartTwoDBContext _ctx;
 
         public EventsService(EventiaPartTwoDBContext context)
         {

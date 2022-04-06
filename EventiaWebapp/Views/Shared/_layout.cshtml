@@ -1,4 +1,6 @@
-﻿@using Newtonsoft.Json
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<EventiaUser> _signInManager
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,12 @@
         <h3>Eventia</h3>
         <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Home</a>
         <a class="btn btn-secondary" asp-controller="Home" asp-action="Events">Events</a>
-        <a class="btn btn-secondary" asp-controller="Home" asp-action="MyEvents">MyEvents</a>
+        @if (_signInManager.IsSignedIn(User))
+        {
+            <a class="btn btn-secondary" asp-controller="Home" asp-action="MyEvents">MyEvents</a>
+        }
+        
+        
       
     </nav>
 </header>

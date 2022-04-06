@@ -19,8 +19,7 @@ namespace EventiaWebapp.Controllers
 
         public IActionResult JoinEvent(int eventId)
         {
-            var joinEvent = _eventsService.GetEvents()
-                .Find(e => e.EventId == eventId);
+            var joinEvent = _eventsService.GetOneEvent(eventId);
             return View(joinEvent);
         }
         public IActionResult ConfirmBooking(int eventId)
@@ -29,8 +28,7 @@ namespace EventiaWebapp.Controllers
             var aId = _eventsService.GetAttendee(uId);
 
             _eventsService.AttendEvent(aId.Id, eventId);
-            var confirmedEvent = _eventsService.GetEvents()
-                .Find(e => e.EventId == eventId);
+            var confirmedEvent = _eventsService.GetOneEvent(eventId);
             return View(confirmedEvent);
         }
     }
