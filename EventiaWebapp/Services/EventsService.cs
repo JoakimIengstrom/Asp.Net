@@ -13,6 +13,16 @@ namespace EventiaWebapp.Services
             _ctx = context;
         }
 
+        public EventPartTwo GetOneEvent(int eId)
+        {
+            var thisEvent = _ctx.Events
+                .Include(e => e.Organizer)
+                .FirstOrDefault(e => e.EventId == eId);
+
+            return thisEvent;
+        }
+
+
         public List<EventPartTwo> GetEvents()
         {
             var eventList = _ctx.Events

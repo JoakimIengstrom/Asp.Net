@@ -35,11 +35,11 @@ namespace EventiaWebapp.Data
                 new() {UserName = "California_Dreams", Email = "carlifona@usa.com", PhoneNumber = "031-3684500"}
             };
 
-            foreach (var organizer in organizers) 
+            foreach (var organizer in organizers)
             {
                 await _userManager.CreateAsync(organizer, password: "Qwerty87!");
             };
-            
+
 
             var events = new List<EventPartTwo>
             {
@@ -122,15 +122,28 @@ namespace EventiaWebapp.Data
             List<EventiaUser> attendees = new List<EventiaUser>
             {
                 new() {UserName = "joakim@gmail.com", FirstName = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
-                new() {UserName = "user2", FirstName = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
-                new() {UserName = "user3", FirstName = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"}
+                new() {UserName = "theo@gmail.com", FirstName = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
+                new() {UserName = "annamarta@gmail.com", FirstName = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"},
+                new() {UserName = "johan@gmail.com", FirstName = "Johan", Email = "johan@gmail.com", PhoneNumber = "0704-123456"}
             };
 
             foreach (var attendee in attendees)
             {
                 await _userManager.CreateAsync(attendee, password: "Qwerty87!");
             };
-        }
 
+            await _roleManager.CreateAsync(new IdentityRole { Name = "UserAdmin" });
+            await _roleManager.CreateAsync(new IdentityRole { Name = "UserOrganizer" });
+            await _roleManager.CreateAsync(new IdentityRole { Name = "UserAttendee" });
+
+            await _userManager.AddToRoleAsync(attendees[0], "UserAttendee");
+            await _userManager.AddToRoleAsync(attendees[1], "UserAttendee");
+            await _userManager.AddToRoleAsync(attendees[2], "UserAttendee");
+            await _userManager.AddToRoleAsync(attendees[3], "UserAdmin");
+
+            await _userManager.AddToRoleAsync(organizers[0], "UserOrganizer");
+            await _userManager.AddToRoleAsync(organizers[1], "UserOrganizer");
+            await _userManager.AddToRoleAsync(organizers[2], "UserOrganizer");
+        }
     }
 }
