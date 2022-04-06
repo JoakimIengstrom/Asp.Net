@@ -1,6 +1,6 @@
 using EventiaWebapp.Data;
+using EventiaWebapp.Models;
 using EventiaWebapp.Services;
-using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +20,9 @@ builder.Services
         {
             options.UseSqlServer(connectionString);
         });
-    
+
+builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.RequireConfirmedAccount = false) //All IdenityUser becomes User. 
+    .AddEntityFrameworkStores<EventiaPartTwoDBContext>();
 
 var app = builder.Build();
 

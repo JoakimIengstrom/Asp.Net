@@ -1,12 +1,11 @@
 ﻿using EventiaWebapp.Models;
-using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
     public class EventsService 
     {
-        private EventiaDbContext _ctx;
+        /*private EventiaDbContext _ctx;
 
         public EventsService(EventiaDbContext context)
         {
@@ -54,6 +53,6 @@ namespace EventiaWebapp.Services
             var myEvents = attendeeObj.Events;
 
             return myEvents.ToList();
-        }
+        }*/
     }
 }

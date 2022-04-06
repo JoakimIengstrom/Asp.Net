@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventiaWebapp.Models
@@ -14,10 +15,14 @@ namespace EventiaWebapp.Models
         public DateTime Date { get; set; }
         public int Spots_Available { get; set; }
 
-        [ForeignKey("Organizer")]
-        public int OrganizerId { get; set; }
-        public virtual User Organizer { get; set; }
+        //[ForeignKey("Organizer")]
+        //public int OrganizerId { get; set; }
 
-        public virtual ICollection<User> Attendees { get; set; }
+        [InverseProperty("HostedEvents")]
+        [DisplayName ("Organizer")]
+        public /*virtual*/ EventiaUser Organizer { get; set; }
+
+        [InverseProperty("JoinEvents")]
+        public /*virtual*/ ICollection<EventiaUser>? Attendees { get; set; }
     }
 }
