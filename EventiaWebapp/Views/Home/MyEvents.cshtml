@@ -9,9 +9,13 @@
     var Attendee = _eventsService.GetAttendee(userId);
     int acordinaCounter = 1;
 }
-
-<h3 class="myEventUser">@Attendee.FirstName´s eventlist!</h3>
-
+@if (@Attendee.FirstName != null){
+    <h3 class="myEventUser">@Attendee.FirstName´s eventlist!</h3>
+}
+else
+{
+    <h3 class="myEventUser">@User.Identity.Name´s eventlist!</h3>
+}
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var item in MyEvents)
     {

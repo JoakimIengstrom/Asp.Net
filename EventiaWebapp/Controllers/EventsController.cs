@@ -1,5 +1,6 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,11 +18,14 @@ namespace EventiaWebapp.Controllers
             _userManager = userManager;
         }
 
+        [Authorize(Roles = "UserAttendee")]
         public IActionResult JoinEvent(int eventId)
         {
             var joinEvent = _eventsService.GetOneEvent(eventId);
             return View(joinEvent);
         }
+
+        [Authorize(Roles = "UserAttendee")]
         public IActionResult ConfirmBooking(int eventId)
         {
             var uId = _userManager.GetUserId(User);

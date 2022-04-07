@@ -22,6 +22,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<EventiaUser> _signInManager;
@@ -121,6 +122,8 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "UserAttendee");
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

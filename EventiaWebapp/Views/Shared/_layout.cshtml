@@ -16,9 +16,13 @@
         <h3>Eventia</h3>
         <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Home</a>
         <a class="btn btn-secondary" asp-controller="Home" asp-action="Events">Events</a>
-        @if (_signInManager.IsSignedIn(User))
+        @if (_signInManager.IsSignedIn(User) && User.IsInRole("UserAttendee"))
         {
             <a class="btn btn-secondary" asp-controller="Home" asp-action="MyEvents">MyEvents</a>
+        }
+        @if (_signInManager.IsSignedIn(User) && User.IsInRole("UserOrganizer"))
+        {
+            <a class="btn btn-secondary" asp-controller="Organizer" asp-action="AddEvent">AddEvent</a>
         }
     </nav>
 </header>

@@ -130,4 +130,8 @@ button.accordion-button:not(.collapsed)::after {
     font-weight: bold
 }
 
+.addEventFrom {
+    margin-bottom: 15px;
+}
+
 

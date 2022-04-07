@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class LogoutModel : PageModel
     {
         private readonly SignInManager<EventiaUser> _signInManager;
