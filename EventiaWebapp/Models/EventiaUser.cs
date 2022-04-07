@@ -8,7 +8,7 @@ namespace EventiaWebapp.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
     
-        public List<EventPartTwo> HostedEvents { get; set; }
+        public ICollection<EventPartTwo> HostedEvents { get; set; }
         public ICollection<EventPartTwo> JoinEvents { get; set; }
     }
 }

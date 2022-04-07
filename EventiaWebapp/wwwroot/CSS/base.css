@@ -6,6 +6,12 @@
     background-image: url("../Img/background.jpg");
 }
 
+.welcomeImg {
+    width: 90%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
 body {
     margin-top: 30px;
     border-radius: 20px;
@@ -98,4 +104,30 @@ button.accordion-button:not(.collapsed)::after {
 .myEventUser {
     margin-top: 10px;
 }
+
+.loginForm {
+    border-radius: 10px;
+    border: solid 1px grey;
+    box-shadow: black 2px 2px;
+    padding-top: 10px;
+    min-width: 100%;
+    padding-bottom: 15px;
+}
+
+.loginContainer {
+    padding: 15px;
+    
+}
+
+.formLinks {
+    text-decoration: none;
+    color: black;
+    font-size: 1rem;
+}
+
+.formLinks:hover {
+    color: red;
+    font-weight: bold
+}
+
 
