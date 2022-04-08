@@ -18,14 +18,14 @@ namespace EventiaWebapp.Controllers
             _userManager = userManager;
         }
 
-        [Authorize(Roles = "UserAttendee")]
+        [Authorize(Roles = "UserAttendee, UserAdmin")]
         public IActionResult JoinEvent(int eventId)
         {
             var joinEvent = _eventsService.GetOneEvent(eventId);
             return View(joinEvent);
         }
 
-        [Authorize(Roles = "UserAttendee")]
+        [Authorize(Roles = "UserAttendee, UserAdmin")]
         public IActionResult ConfirmBooking(int eventId)
         {
             var uId = _userManager.GetUserId(User);

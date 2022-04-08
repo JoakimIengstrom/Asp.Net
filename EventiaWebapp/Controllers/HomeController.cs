@@ -17,7 +17,7 @@ namespace EventiaWebapp.Controllers
             return View();
         }
 
-        [Authorize(Roles = "UserAttendee")]
+        [Authorize(Roles = "UserAttendee, UserAdmin")]
         public IActionResult MyEvents()
         {
             return View();

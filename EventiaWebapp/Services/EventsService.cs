@@ -61,9 +61,11 @@ namespace EventiaWebapp.Services
                 .ThenInclude(e => e.Organizer)
                 .FirstOrDefault(a => a.Id == aID);
 
+            if (attendeeObj == null) return null; 
+           
             var myEvents = attendeeObj.JoinEvents;
-
             return myEvents.ToList();
+            
         }
     }
 }

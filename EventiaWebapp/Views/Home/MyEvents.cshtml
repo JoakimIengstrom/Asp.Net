@@ -16,6 +16,12 @@ else
 {
     <h3 class="myEventUser">@User.Identity.Name´s eventlist!</h3>
 }
+
+@if (MyEvents == null)
+{
+    <p>There is no booked events jet!</p>
+}
+
 <div class="accordion accordion-flush" id="accordionFlushExample">
     @foreach (var item in MyEvents)
     {
