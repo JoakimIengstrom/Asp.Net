@@ -119,15 +119,15 @@ namespace EventiaWebapp.Data
 
             List<EventiaUser> attendees = new List<EventiaUser>
             {
-                new() {UserName = "joakim@gmail.com", FirstName = "Joakim", Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
-                new() {UserName = "theo@gmail.com", FirstName = "Theo", Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
-                new() {UserName = "annamarta@gmail.com", FirstName = "AnnaMärta", Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"},
-                new() {UserName = "johan@gmail.com", FirstName = "Johan", Email = "johan@gmail.com", PhoneNumber = "0704-123456"}
+                new() {UserName = "joakim@gmail.com", FirstName = "Joakim", OrganizerApplication = false, Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
+                new() {UserName = "theo@gmail.com", FirstName = "Theo", OrganizerApplication = false, Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
+                new() {UserName = "annamarta@gmail.com", FirstName = "AnnaMärta",OrganizerApplication = false, Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"},
+                new() {UserName = "johan@gmail.com", FirstName = "Johan", OrganizerApplication = false, Email = "johan@gmail.com", PhoneNumber = "0704-123456"}
             };
 
             foreach (var attendee in attendees)
             {
-                await _userManager.CreateAsync(attendee, password: "Qwerty87!");
+                await _userManager.CreateAsync(attendee, password: "Qwerty87!"); 
             };
 
             await _roleManager.CreateAsync(new IdentityRole { Name = "UserAdmin" });

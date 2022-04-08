@@ -7,8 +7,10 @@ namespace EventiaWebapp.Models
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-    
-        public ICollection<EventPartTwo> HostedEvents { get; set; }
+
+        public bool? OrganizerApplication { get; set; }
+
+    public ICollection<EventPartTwo> HostedEvents { get; set; }
         public ICollection<EventPartTwo> JoinEvents { get; set; }
     }
 }

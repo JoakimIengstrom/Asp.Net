@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EventsService>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<DataBase>();
 
 var connectionString = 
