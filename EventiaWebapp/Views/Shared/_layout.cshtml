@@ -22,6 +22,7 @@
         }
         @if (_signInManager.IsSignedIn(User) && User.IsInRole("UserOrganizer") || User.IsInRole("UserAdmin"))
         {
+            <a class="btn btn-secondary" asp-controller="Organizer" asp-action="HostedEvents">Hosted Events</a>
             <a class="btn btn-secondary" asp-controller="Organizer" asp-action="AddEvent">AddEvent</a>
         }
         @if (_signInManager.IsSignedIn(User) && User.IsInRole("UserAdmin"))

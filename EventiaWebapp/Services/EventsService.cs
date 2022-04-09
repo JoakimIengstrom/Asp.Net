@@ -31,6 +31,16 @@ namespace EventiaWebapp.Services
 
             return eventList;
         }
+        public async Task<List<EventPartTwo>> HostedEventList(string orgId)
+        {
+            var hostedEvents = await _ctx.Events
+                .Include(e => e.Organizer)
+                .Where(e => e.Organizer.Id == orgId)
+                .ToListAsync();
+
+            return hostedEvents;
+        }
+
 
         public EventiaUser GetAttendee(string aID)
         {

@@ -1,0 +1,40 @@
+﻿@using EventiaWebapp.Services
+@using Microsoft.AspNetCore.Identity
+@inject EventsService _eventsService
+@inject UserManager<EventiaUser> _userManager
+@inject SignInManager<EventiaUser> _signInManager
+
+@{
+    var userId = _userManager.GetUserId(User);
+    var list = await _eventsService.HostedEventList(userId);    
+    int acordinaCounter = 1;
+}
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            @foreach (var item in list)
+            {
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading-@acordinaCounter">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@acordinaCounter" aria-expanded="false" aria-controls="flush-collapse-@acordinaCounter">
+                                @item.Title - @item.Date.ToShortDateString()
+                            </button>
+                        </h2>
+                        <div id="flush-collapse-@acordinaCounter" class="accordion-collapse collapse" aria-labelledby="flush-heading-@acordinaCounter" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <h3>@item.Organizer.UserName</h3>
+                                <h4>@item.Place</h4>
+                                <p>@item.Description</p>
+                                <p><strong>@item.Adress</strong></p>
+                                <p><strong>Spots: @item.Spots_Available</strong></p>
+                                
+                                <a class="btn btn-secondary" asp-controller="Organizer" asp-action="AddEvent">AddEvent</a>
+
+                            </div>
+                        </div>  
+                    </div>
+                acordinaCounter = acordinaCounter + 1;
+
+            }
+        </div>
+        
+        
+    

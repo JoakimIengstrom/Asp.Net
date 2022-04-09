@@ -25,11 +25,10 @@
         {   
             <div class="organizerApplication">
                 <p>Role: @roles[0] Name: @users.FirstName </p>
-                <p>This attendee wish to be an Organizer: @users.FirstName</p>
+                <p>@users.FirstName wish to be an Organizer</p>
                 <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@users.Id">Accept new organizer</a>
             </div>
         }
-        
     }
     else
     {
@@ -37,11 +36,6 @@
         
     }
 
-
-    /* <div>
-        <p>This attendee wish to be an Organizer: @users.FirstName</p>
-        <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@users.Id">Accept new organizer</a>
-    </div> */
 }
 
 

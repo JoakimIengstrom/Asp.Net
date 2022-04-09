@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography.X509Certificates;
+using EventiaWebapp.Data;
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -10,12 +11,13 @@ namespace EventiaWebapp.Controllers
     public class AdminController : Controller
     {
         private readonly UserService _userService;
-        private readonly UserManager<EventiaUser> _userManager;
+        private readonly EventiaPartTwoDBContext _ctx;
 
-        public AdminController(EventsService eventsService, UserManager<EventiaUser> userManager, UserService userService)
+
+        public AdminController(UserService userService, EventiaPartTwoDBContext ctx)
         {
-            _userManager = userManager;
             _userService = userService;
+            _ctx = ctx;
         }
 
         [Authorize(Roles = "UserAdmin")]
