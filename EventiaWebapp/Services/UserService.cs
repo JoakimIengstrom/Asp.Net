@@ -1,6 +1,7 @@
 ﻿using EventiaWebapp.Data;
 using EventiaWebapp.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
@@ -27,13 +28,13 @@ namespace EventiaWebapp.Services
             _ctx.SaveChanges();
         }
         
-        public List<EventiaUser> NewOrganizers()
+        public async Task <List<EventiaUser>> userList()
         {
-            var listNewOrganizer = _ctx.Users
-                .Where(u => u.OrganizerApplication == true)
+            var userList = _ctx.Users
+                .OrderBy(u => u.UserName)
                 .ToList();
 
-            return listNewOrganizer;
+            return userList;
         }
 
         public async Task ChangeRole(string userId)

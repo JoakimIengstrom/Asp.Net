@@ -28,7 +28,7 @@ namespace EventiaWebapp.Data
         {
             List<EventiaUser> organizers = new List<EventiaUser>
             {
-                new() {UserName = "america.events@ticket.com", Email = "america.events@ticket.com", PhoneNumber = "0771-707070"},
+                new() {UserName = "Austin_Music", Email = "organizer@gmail.com", PhoneNumber = "0771-707070"},
                 new() {UserName = "Texas_Music", Email = "texas@events.com", PhoneNumber = "08-6650100"},
                 new() {UserName = "California_Dreams", Email = "carlifona@usa.com", PhoneNumber = "031-3684500"}
             };

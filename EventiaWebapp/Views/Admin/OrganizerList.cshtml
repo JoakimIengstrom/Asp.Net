@@ -4,17 +4,45 @@
 @inject UserManager<EventiaUser> _userManager
 
 @{
-    var newOrganizers = _userService.NewOrganizers();
+    var userLIst = await _userService.userList();
 }
 
 <div>
     List of Attendess that want to be an Organizer
 </div>
 
-@foreach (var organizer in newOrganizers)
+@foreach (var users in userLIst)
 {
-    <div>
-        <p>This attendee wish to be an Organizer: @organizer.FirstName</p>
-        <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@organizer.Id">Accept new organizer</a>
-    </div>
+    var roles = await _userManager.GetRolesAsync(users);
+
+    @if (@users.FirstName != null)
+    {
+        if (users.OrganizerApplication != true)
+        {
+            <p>Role: @roles[0] Name: @users.FirstName </p>
+        }
+        else
+        {   
+            <div class="organizerApplication">
+                <p>Role: @roles[0] Name: @users.FirstName </p>
+                <p>This attendee wish to be an Organizer: @users.FirstName</p>
+                <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@users.Id">Accept new organizer</a>
+            </div>
+        }
+        
+    }
+    else
+    {
+        <p>Role: @roles[0] Name: @users.UserName </p>
+        
+    }
+
+
+    /* <div>
+        <p>This attendee wish to be an Organizer: @users.FirstName</p>
+        <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@users.Id">Accept new organizer</a>
+    </div> */
 }
+
+
+   

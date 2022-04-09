@@ -10,7 +10,7 @@ namespace EventiaWebapp.Models
 
         public bool? OrganizerApplication { get; set; }
 
-    public ICollection<EventPartTwo> HostedEvents { get; set; }
+        public ICollection<EventPartTwo> HostedEvents { get; set; }
         public ICollection<EventPartTwo> JoinEvents { get; set; }
     }
 }

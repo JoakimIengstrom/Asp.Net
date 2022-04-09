@@ -1,20 +1,28 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<form class="addEventFrom">
-    <label for="fname">Title:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Description:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="lname">Place:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="lname">Adress:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="lname">Date:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <label for="lname">Spots:</label><br>
-    <input type="text" id="lname" name="lname"><br>
-    <input class="btn btn-secondary" type="submit" value="Submit">
-</form>
+﻿@using Microsoft.AspNetCore.Identity
+@model EventiaWebapp.Models.EventPartTwo
+@inject SignInManager<EventiaUser> _signInManager
+
+<div>
+    <form method="post" asp-controller="Organizer" asp-action="CreateEvent">
+        <p>Event Name: </p>
+        <input asp-for="Title"/>
+
+        <p>Description: </p>
+        <input asp-for="Description"/>
+
+        <p>Location: </p>
+        <input asp-for="Place"/>
+
+        <p>Adress: </p>
+        <input asp-for="Adress"/>
+
+        <p>Date: </p>
+        <input asp-for="Date"/>
+        
+        <p>Numper of Tickets: </p>
+        <input asp-for="Spots_Available"/>
+        
+        <p>Read and then press to submit</p>
+        <input class="btn btn-secondary" type="submit"/>
+    </form>
+</div>
