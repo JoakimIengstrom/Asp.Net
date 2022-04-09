@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<EventiaUser> _userManager
+@model EventPartTwo
+
+@{
+    var org = @Model;
+}
+
+
+<h3>@org.OrganizerName is a new Organizer</h3>

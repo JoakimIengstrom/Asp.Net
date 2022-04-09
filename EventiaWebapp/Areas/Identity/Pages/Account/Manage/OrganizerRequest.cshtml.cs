@@ -1,11 +1,13 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account.Manage
 {
+    [Authorize(Roles = "UserAttendee, UserAdmin")]
     public class OrganizerRequestModel : PageModel
     {
         private readonly UserManager<EventiaUser> _userManager;

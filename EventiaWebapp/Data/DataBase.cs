@@ -121,8 +121,8 @@ namespace EventiaWebapp.Data
             {
                 new() {UserName = "joakim@gmail.com", FirstName = "Joakim", OrganizerApplication = false, Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
                 new() {UserName = "theo@gmail.com", FirstName = "Theo", OrganizerApplication = false, Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
-                new() {UserName = "annamarta@gmail.com", FirstName = "AnnaMärta",OrganizerApplication = false, Email = "annamarta@gmail.com", PhoneNumber = "0703-123456"},
-                new() {UserName = "johan@gmail.com", FirstName = "Johan", OrganizerApplication = false, Email = "johan@gmail.com", PhoneNumber = "0704-123456"}
+                new() {UserName = "newOrganizer@gmail.com", FirstName = "AnnaMärta",OrganizerApplication = true, Email = "newOrganizer@gmail.com", PhoneNumber = "0703-123456"},
+                new() {UserName = "admin@gmail.com", FirstName = "Johan", OrganizerApplication = false, Email = "admin@gmail.com", PhoneNumber = "0704-123456"}
             };
 
             foreach (var attendee in attendees)

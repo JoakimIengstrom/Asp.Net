@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using EventiaWebapp.Services
+@inject UserService _userService
+@inject UserManager<EventiaUser> _userManager
+
+@{
+    var newOrganizers = _userService.NewOrganizers();
+}
+
+<div>
+    List of Attendess that want to be an Organizer
+</div>
+
+@foreach (var organizer in newOrganizers)
+{
+    <div>
+        <p>This attendee wish to be an Organizer: @organizer.FirstName</p>
+        <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@organizer.Id">Accept new organizer</a>
+    </div>
+}
