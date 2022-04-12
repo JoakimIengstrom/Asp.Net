@@ -8,8 +8,7 @@ namespace EventiaWebapp.Data
         private EventiaPartTwoDBContext _ctx;
         private UserManager<EventiaUser> _userManager;
         private RoleManager<IdentityRole> _roleManager;
-
-
+        
         public DataBase(EventiaPartTwoDBContext ctx, UserManager<EventiaUser> uM, RoleManager<IdentityRole> iR)
         {
             this._ctx = ctx;
@@ -28,16 +27,15 @@ namespace EventiaWebapp.Data
         {
             List<EventiaUser> organizers = new List<EventiaUser>
             {
-                new() {UserName = "Austin_Music", Email = "organizer@gmail.com", PhoneNumber = "0771-707070"},
-                new() {UserName = "Texas_Music", Email = "texas@events.com", PhoneNumber = "08-6650100"},
-                new() {UserName = "California_Dreams", Email = "carlifona@usa.com", PhoneNumber = "031-3684500"}
+                new() {UserName = "Organizer1", Email = "austin@events.com", PhoneNumber = "0771-707070"},
+                new() {UserName = "Organizer2", Email = "texas@events.com", PhoneNumber = "08-6650100"},
+                new() {UserName = "Organizer3", Email = "carlifona@usa.com", PhoneNumber = "031-3684500"}
             };
 
             foreach (var organizer in organizers)
             {
                 await _userManager.CreateAsync(organizer, password: "Qwerty87!");
             };
-
 
             var events = new List<EventPartTwo>
             {
@@ -119,10 +117,10 @@ namespace EventiaWebapp.Data
 
             List<EventiaUser> attendees = new List<EventiaUser>
             {
-                new() {UserName = "attendee", FirstName = "Joakim", OrganizerApplication = false, Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
-                new() {UserName = "Theo", FirstName = "Theo", OrganizerApplication = false, Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
-                new() {UserName = "Marta", FirstName = "AnnaMärta",OrganizerApplication = true, Email = "newOrganizer@gmail.com", PhoneNumber = "0703-123456"},
-                new() {UserName = "Admin@gmail.com", FirstName = "Johan", OrganizerApplication = false, Email = "admin@gmail.com", PhoneNumber = "0704-123456"}
+                new() {UserName = "Attendee1", FirstName = "Joakim", OrganizerApplication = false, Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
+                new() {UserName = "Attendee2", FirstName = "Theo", OrganizerApplication = false, Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
+                new() {UserName = "Attendee3", FirstName = "AnnaMärta",OrganizerApplication = true, Email = "newOrganizer@gmail.com", PhoneNumber = "0703-123456"},
+                new() {UserName = "Admin", FirstName = "Johan", OrganizerApplication = false, Email = "admin@gmail.com", PhoneNumber = "0704-123456"}
             };
 
             foreach (var attendee in attendees)
@@ -137,6 +135,7 @@ namespace EventiaWebapp.Data
             await _userManager.AddToRoleAsync(attendees[0], "UserAttendee");
             await _userManager.AddToRoleAsync(attendees[1], "UserAttendee");
             await _userManager.AddToRoleAsync(attendees[2], "UserAttendee");
+
             await _userManager.AddToRoleAsync(attendees[3], "UserAdmin");
 
             await _userManager.AddToRoleAsync(organizers[0], "UserOrganizer");

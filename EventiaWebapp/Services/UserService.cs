@@ -19,17 +19,12 @@ namespace EventiaWebapp.Services
             _roleManager = roleManager;
         }
 
-        public async Task GetAttendeeToOrganizer(string aID)
+        public async Task<List<EventiaUser>> userList()
         {
-            var newOrganizer = await _ctx.Users
-                .FirstOrDefaultAsync(a => a.Id == aID);
+            var roles = _ctx.UserRoles
+                .Include(r => r.RoleId)
+                .Where(r => r.RoleId != "UserAdmin");
 
-            newOrganizer.OrganizerApplication = true;
-            await _ctx.SaveChangesAsync();
-        }
-        
-        public async Task <List<EventiaUser>> userList()
-        {
             var userList = _ctx.Users
                 .OrderBy(u => u.UserName)
                 .ToList();
@@ -37,11 +32,20 @@ namespace EventiaWebapp.Services
             return userList;
         }
 
-        public async Task ChangeRole(string userId)
+        public async Task RequestToBeAnOrganizer(string aID)
+        {
+            var newOrganizer = await _ctx.Users
+                .FirstOrDefaultAsync(a => a.Id == aID);
+
+            newOrganizer.OrganizerApplication = true;
+            await _ctx.SaveChangesAsync();
+        }
+
+        public async Task AddNewRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            //await _userManager.RemoveFromRoleAsync(user, "UserAttende"); //This one does not seems to be needed as it writes over?
+            //await _userManager.RemoveFromRoleAsync(user, "UserAttende"); //Changed from changeRole to AddRole, so keeping this right now as a reminder. 
             await _userManager.AddToRoleAsync(user, "UserOrganizer");
             user.OrganizerApplication = false;
 

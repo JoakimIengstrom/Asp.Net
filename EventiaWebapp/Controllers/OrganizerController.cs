@@ -22,14 +22,14 @@ namespace EventiaWebapp.Controllers
             return View();
         }
 
-        [Authorize(Roles = "UserOrganizer")]
+        [Authorize(Roles = "UserOrganizer, UserAdmin")]
         public IActionResult HostedEvents()
         {
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = "UserOrganizer")]
+        [Authorize(Roles = "UserOrganizer, UserAdmin")]
         public async Task<IActionResult> CreateEvent(string title, string description, string place, string adress, DateTime date, int spots_Available)
         {
             var org = await _userManager.GetUserAsync(User);
