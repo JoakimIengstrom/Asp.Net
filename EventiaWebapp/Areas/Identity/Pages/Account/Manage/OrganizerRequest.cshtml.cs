@@ -21,10 +21,10 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account.Manage
 
         public void OnGet() {}
 
-        public void OnPost()
+        public async Task OnPost()
         {
             var activeUser = _userManager.GetUserId(User);
-            _userService.GetAttendeeToOrganizer(activeUser);
+            await _userService.GetAttendeeToOrganizer(activeUser);
 
         }
     }

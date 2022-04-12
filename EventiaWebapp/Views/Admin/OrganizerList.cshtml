@@ -8,35 +8,57 @@
 }
 
 <div>
-    List of Attendess that want to be an Organizer
+    <h4>List of Users</h4><br/>
 </div>
+
+<div class="test">
 
 @foreach (var users in userLIst)
 {
     var roles = await _userManager.GetRolesAsync(users);
-
+    
     @if (@users.FirstName != null)
     {
         if (users.OrganizerApplication != true)
         {
-            <p>Role: @roles[0] Name: @users.FirstName </p>
+            if (roles.Count == 1)
+            {
+                <p class="userList">Name: @users.FirstName</p>
+                <p>Role: @roles[0]</p>
+            }
+            else if (roles.Count == 2)
+            {
+                <p class="userList">Name: @users.FirstName</p>
+                <p>Role: @roles[0]</p>
+                <p>Role: @roles[1]</p>
+            }
+            else
+            {
+                <p class="userList">Name: @users.FirstName</p>
+                <p>Role: @roles[0]</p>
+                <p>Role: @roles[1]</p>
+                <p>Role: @roles[2]</p>
+            }
         }
+
         else
         {   
             <div class="organizerApplication">
-                <p>Role: @roles[0] Name: @users.FirstName </p>
                 <p>@users.FirstName wish to be an Organizer</p>
+                <p>Role: @roles[0]</p>
                 <a class="btn btn-secondary" asp-controller="Admin" asp-action="AddNewOrganizer" asp-route-userId="@users.Id">Accept new organizer</a>
             </div>
         }
     }
     else
     {
-        <p>Role: @roles[0] Name: @users.UserName </p>
-        
+        <p class="userList">Name: @users.UserName </p>
+        <p>Role: @roles[0]</p>
     }
-
+    <div>---------------------------------------</div>
 }
+
+</div>
 
 
    

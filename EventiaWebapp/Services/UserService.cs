@@ -19,13 +19,13 @@ namespace EventiaWebapp.Services
             _roleManager = roleManager;
         }
 
-        public void GetAttendeeToOrganizer(string aID)
+        public async Task GetAttendeeToOrganizer(string aID)
         {
-            var newOrganizer = _ctx.Users
-                .FirstOrDefault(a => a.Id == aID);
+            var newOrganizer = await _ctx.Users
+                .FirstOrDefaultAsync(a => a.Id == aID);
 
             newOrganizer.OrganizerApplication = true;
-            _ctx.SaveChanges();
+            await _ctx.SaveChangesAsync();
         }
         
         public async Task <List<EventiaUser>> userList()
@@ -41,11 +41,11 @@ namespace EventiaWebapp.Services
         {
             var user = await _userManager.FindByIdAsync(userId);
 
-            await _userManager.RemoveFromRoleAsync(user, "UserAttende");
+            //await _userManager.RemoveFromRoleAsync(user, "UserAttende"); //This one does not seems to be needed as it writes over?
             await _userManager.AddToRoleAsync(user, "UserOrganizer");
             user.OrganizerApplication = false;
 
-            _ctx.SaveChangesAsync();
+            await _ctx.SaveChangesAsync();
         }
     }
 

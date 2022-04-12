@@ -77,6 +77,10 @@ button.accordion-button:hover {
     color: black;
 }
 
+.btn {
+    margin-bottom: 10px;
+}
+
 .btn-secondary {
     background-color: beige;
     color: black;
@@ -136,10 +140,17 @@ button.accordion-button:not(.collapsed)::after {
 
 .organizerApplication {
     font-weight: bolder;
-    border: solid grey 1px;
+    color: brown;
     padding: 10px;
     margin: auto;
     margin-bottom: 10px;
     width: 50%;
 }
 
+.userList {
+    font-weight: bold;
+}
+
+.test {
+
+}
