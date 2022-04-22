@@ -120,6 +120,7 @@ namespace EventiaWebapp.Data
                 new() {UserName = "Attendee1", FirstName = "Joakim", OrganizerApplication = false, Email = "joakim@gmail.com", PhoneNumber = "0701-123456", JoinEvents = new List<EventPartTwo>{events[2]}},
                 new() {UserName = "Attendee2", FirstName = "Theo", OrganizerApplication = false, Email = "theo@gmail.com", PhoneNumber = "0702-123456"},
                 new() {UserName = "Attendee3", FirstName = "AnnaMärta",OrganizerApplication = true, Email = "newOrganizer@gmail.com", PhoneNumber = "0703-123456"},
+
                 new() {UserName = "Admin", FirstName = "Johan", OrganizerApplication = false, Email = "admin@gmail.com", PhoneNumber = "0704-123456"}
             };
 

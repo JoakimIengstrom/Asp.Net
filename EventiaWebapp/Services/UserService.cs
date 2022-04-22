@@ -9,22 +9,15 @@ namespace EventiaWebapp.Services
     {
         private readonly EventiaPartTwoDBContext _ctx;
         private readonly UserManager<EventiaUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
 
-
-        public UserService(EventiaPartTwoDBContext context, UserManager<EventiaUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserService(EventiaPartTwoDBContext context, UserManager<EventiaUser> userManager)
         {
             _ctx = context;
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         public async Task<List<EventiaUser>> userList()
         {
-            var roles = _ctx.UserRoles
-                .Include(r => r.RoleId)
-                .Where(r => r.RoleId != "UserAdmin");
-
             var userList = _ctx.Users
                 .OrderBy(u => u.UserName)
                 .ToList();
