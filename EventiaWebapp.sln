@@ -5,6 +5,11 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventiaWebapp", "EventiaWebapp\EventiaWebapp.csproj", "{F3D4CE8C-9B6F-4DE1-866F-3680B08D813C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{010BEB25-59E2-4E44-B18A-864E03B21BAD}"
+	ProjectSection(SolutionItems) = preProject
+		Rapport.md = Rapport.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
